@@ -5,8 +5,16 @@
       <svg class="header-icon">...</svg>
       <span class="header-title">管理画面</span>
     </a>
-    <button class="header-logout">ログアウト
-      <svg class="header-logout-icon"></svg>
-    </button>
+
+    <form method="POST" action="{{ route('logout') }}" class="header-logout">
+        @csrf
+        <button
+          :href="route('logout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();"
+        >ログアウト
+          <svg class="header-logout-icon"></svg>
+        </button>
+    </form>
   </div>
 </header>
