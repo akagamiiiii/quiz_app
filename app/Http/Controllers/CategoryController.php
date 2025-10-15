@@ -29,8 +29,6 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        // dd('カテゴリー', $request);
-        // dd($request->name, $request->description);
         $category = new Category();
         $category->name = $request->name;
         $category->description = $request->description;
