@@ -11,9 +11,13 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function top()
     {
-        //
+        //カテゴリー一覧を取得
+        $categories = Category::get();
+        return view('admin.top', [
+            'categories' => $categories
+        ]);
     }
 
     /**
