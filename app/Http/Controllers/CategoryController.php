@@ -76,10 +76,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * カテゴリー削除処理
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request, int $categoryId)
     {
-        //
+        $category = Category::findOrFail($categoryId);
+        $category->delete();
+        return redirect()->route('admin.top');
     }
 }
