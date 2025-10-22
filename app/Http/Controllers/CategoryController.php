@@ -44,7 +44,7 @@ class CategoryController extends Controller
     /**
      * カテゴリー詳細画面表示
      */
-    public function show(Request $request, $categoryId)
+    public function show(Request $request, int $categoryId)
     {
         $category = Category::findOrFail($categoryId);
         return view('admin.categories.show', [
@@ -55,7 +55,7 @@ class CategoryController extends Controller
     /**
      * カテゴリー編集画面表示
      */
-    public function edit(Request $request, $categoryId)
+    public function edit(Request $request, int $categoryId)
     {
         $category = Category::findOrFail($categoryId);
         return view('admin.categories.edit', [
@@ -66,9 +66,13 @@ class CategoryController extends Controller
     /**
      * カテゴリー更新処理
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, int $categoryId)
     {
-        //
+        $category = Category::findOrFail($categoryId);
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save();
+        return redirect()->route('admin.categories.show', ['categoryId' => $categoryId]);
     }
 
     /**
