@@ -44,7 +44,7 @@ class CategoryController extends Controller
     /**
      * カテゴリー詳細画面表示
      */
-    public function show(Request $request, int $categoryId)
+    public function show(Request $request, $categoryId)
     {
         $category = Category::findOrFail($categoryId);
         return view('admin.categories.show', [
@@ -53,15 +53,18 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * カテゴリー編集画面表示
      */
-    public function edit(Category $category)
+    public function edit(Request $request, $categoryId)
     {
-        //
+        $category = Category::findOrFail($categoryId);
+        return view('admin.categories.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * カテゴリー更新処理
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
