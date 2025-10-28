@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// 管理画面
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     //管理画面トップページ 兼 カテゴリー一覧表示
     Route::get('top', [CategoryController::class, 'top'])->name('top');
@@ -38,5 +40,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('{categoryId}/update', [CategoryController::class, 'update'])->name('update');
         // カテゴリー削除処理
         Route::post('{categoryId}/destroy', [CategoryController::class, 'destroy'])->name('destroy');
+
+        // クイズ管理
+        Route::prefix('{categoryId}/quizzez')->name('quizzez.')->group(function () {
+            // クイズ新規登録画面
+            Route::get('create', [QuizController::class, 'create'])->name('create');
+        });
     });
 });
