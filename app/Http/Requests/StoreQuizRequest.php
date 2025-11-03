@@ -22,7 +22,16 @@ class StoreQuizRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'question'    => ['required', 'string', 'max:1000'],
+            'explanation' => ['required', 'string', 'max:1000'],
+            'content1'    => ['required', 'string', 'max:255'],
+            'content2'    => ['required', 'string', 'max:255'],
+            'content3'    => ['required', 'string', 'max:255'],
+            'content4'    => ['required', 'string', 'max:255'],
+            'isCorrect1'  => ['required', 'integer', 'in:0,1'],
+            'isCorrect2'  => ['required', 'integer', 'in:0,1'],
+            'isCorrect3'  => ['required', 'integer', 'in:0,1'],
+            'isCorrect4'  => ['required', 'integer', 'in:0,1'],
         ];
     }
 }
