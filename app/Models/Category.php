@@ -10,7 +10,7 @@ class Category extends Model
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
-    public function quizzez()
+    public function quizzes()
     {
         return $this->hasMany(Quiz::class);
     }
