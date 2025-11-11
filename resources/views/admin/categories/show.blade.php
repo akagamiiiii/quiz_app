@@ -64,7 +64,7 @@
               <td class="px-4 py-3 text-lg text-gray-900">
                 <button
                   {{-- クイズ編集画面に遷移 --}}
-                  onclick="location.href='{{ route('admin.categories.show', ['categoryId' => $category->id])}}'"
+                  onclick="location.href='{{ route('admin.categories.quizzes.edit', ['categoryId' => $category->id, 'quizId' => $quiz->id])}}'"
                   class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
                   編集
                 </button>
