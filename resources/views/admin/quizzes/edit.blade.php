@@ -35,7 +35,7 @@
             {{-- 選択肢 --}}
 
             {{-- optionId1~4を、type=hiddenで送る --}}
-          <input type="hidden" name="optionId{{ $i }}" value="{{ $options[$i - 1]->id }}">
+            <input type="hidden" name="optionId{{ $i }}" value="{{ $options[$i - 1]->id }}">
 
             <div class="p-2 w-full">
               <div class="relative">
