@@ -6,7 +6,7 @@ use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('play.top');
 });
 
 Route::get('/dashboard', function () {
