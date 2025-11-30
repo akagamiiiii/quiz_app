@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PlayController::class, 'top'])->name('top');
 // クイズのスタート画面
 Route::get('categories/{categoryId}', [PlayController::class, 'categories'])->name('categories');
+// クイズ出題画面
+Route::get('categories/{categoryId}/quizzes', [PlayController::class, 'quizzes'])->name('categories.quizzes');
 
 // 管理者の認証機能
 require __DIR__.'/auth.php';
