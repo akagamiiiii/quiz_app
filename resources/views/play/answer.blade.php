@@ -39,7 +39,11 @@
           </table>
         </div>
         <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
-          <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">次の問題へ</button>
+          <button
+            onclick="location.href='{{ route('categories.quizzes', ['categoryId'=> $categoryId]) }}'"
+            class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+            次の問題へ
+          </button>
         </div>
     </div>
   </section>
