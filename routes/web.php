@@ -14,6 +14,8 @@ Route::get('categories/{categoryId}', [PlayController::class, 'categories'])->na
 Route::get('categories/{categoryId}/quizzes', [PlayController::class, 'quizzes'])->name('categories.quizzes');
 // クイズ解答画面
 Route::post('categories/{categoryId}/quizzes', [PlayController::class, 'answer'])->name('categories.quizzes.answer');
+// リザルト画面
+Route::get('categories/{categoryId}/quizzes/result', [PlayController::class, 'result'])->name('categories.quizzes.result');
 
 // 管理者の認証機能
 require __DIR__.'/auth.php';

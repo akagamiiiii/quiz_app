@@ -67,7 +67,8 @@ class PlayController extends Controller
         })->first();
 
         if (!$noAnswerResult) {
-            dd('未解答のクイズは無くなりました');
+            // 全てのクイズに解答済みの場合は、リザルト画面にリダイレクト
+            return redirect()->route('categories.quizzes.result', ['categoryId' => $categoryId]);
         }
 
         // クイズIDに紐づくクイズを取得
@@ -110,6 +111,25 @@ class PlayController extends Controller
             'quizOptions' => $quizOptions,
             'selectedOptions' => $slectedOptions,
             'categoryId' => $categoryId
+        ]);
+    }
+
+    /**
+     * リザルト画面表示
+     */
+    public function result(Request $request, int $categoryId)
+    {
+        // セッションからクイズIDと解答情報を取得
+        $resultArray = session('resultArray');
+        $questionCount = count($resultArray);
+        $correctCount = collect($resultArray)->filter(function ($result) {
+            return $result['result'] === true;
+        })->count();
+
+        return view('play.result', [
+            'categoryId' => $categoryId,
+            'questionCount' => $questionCount,
+            'correctCount' => $correctCount,
         ]);
     }
 
