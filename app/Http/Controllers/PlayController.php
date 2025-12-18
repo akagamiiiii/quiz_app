@@ -45,18 +45,7 @@ class PlayController extends Controller
         $resultArray = session('resultArray');
         // 初回アクセス時はセッションに保存されたクイズIDの配列がないため、クイズIDの配列を作成
         if (is_null($resultArray)) {
-            // クイズIDを全て抽出する
-            $quizIds = $category->quizzes->pluck('id')->toArray();
-            // クイズIDの配列をランダムに入れ替える
-            shuffle($quizIds);
-            $resultArray = [];
-            foreach ($quizIds as $quizId) {
-                $resultArray[] = [
-                    'quizId' => $quizId,
-                    'result' => null,
-                ];
-            }
-
+            $resultArray = $this->setResultArrayForSesion($category);
             // クイズIDの配列をセッションに保存
             session(['resultArray' => $resultArray]);
         }
@@ -131,6 +120,26 @@ class PlayController extends Controller
             'questionCount' => $questionCount,
             'correctCount' => $correctCount,
         ]);
+    }
+
+    /**
+     * 初回の時に施sy村にクイズのIDと解答状況を保存する
+     */
+    private function setResultArrayForSesion(Category $category)
+    {
+        // クイズIDを全て抽出する
+        $quizIds = $category->quizzes->pluck('id')->toArray();
+        // クイズIDの配列をランダムに入れ替える
+        shuffle($quizIds);
+        $resultArray = [];
+        foreach ($quizIds as $quizId) {
+            $resultArray[] = [
+                'quizId' => $quizId,
+                'result' => null,
+            ];
+        }
+
+        return $resultArray;
     }
 
     /**
